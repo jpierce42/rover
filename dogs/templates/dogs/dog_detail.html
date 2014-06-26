@@ -1,0 +1,4 @@
+{{ owner }}
+{% for dog in owner.dog_set.all %}
+    {{ dog.name }}
+{% endfor %}

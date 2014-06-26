@@ -1,0 +1,14 @@
+<h1>Add a dog</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'dogs:add' %}" method="post">
+{% csrf_token %}
+    <label for="owner_name">Owner name:</label>
+    <input type="text" name="owner_name" />
+    <br />
+    <label for="dog_name">Dog name:</label>
+    <input type="text" name="dog_name" />
+    <br />
+    <input type="submit" value="Submit" />
+</form>
