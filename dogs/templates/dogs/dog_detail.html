@@ -1,5 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
 {{ owner }}
 {% for dog in owner.dog_set.all %}
     {{ dog.name }}
     <img src="{{ dog.image.url }}" />
 {% endfor %}
+
+{% endblock %}

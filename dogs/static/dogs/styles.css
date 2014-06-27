@@ -52,7 +52,7 @@ a:hover { text-decoration: underline; }
 }
 
 .dog_container {
-    display: inline;
+    float: left;
     width: 200px;
     height: 200px;
 }
