@@ -1,16 +1,22 @@
 from django.shortcuts import (
-    render, redirect, get_object_or_404)
+    render, get_object_or_404)
 from django.http import HttpResponseRedirect
-# from django.core.urlresolvers import reverse
-from django.forms import ModelForm
+from django import forms
+# from django.forms import ModelForm
+
 from dogs.models import Owner, Dog
 
 
+class AddDogForm(forms.Form):
+    owner_name = forms.CharField(label='Owner name:', max_length=50)
+    dog_name = forms.CharField(label='Dog name:', max_length=50)
+
+
+# TODO: Use model forms.
 # class OwnerForm(ModelForm):
 #     class Meta:
 #         model = Owner
 #         fields = ['name']
-
 
 def index(request):
     owner_list = Owner.objects.all()
@@ -27,48 +33,28 @@ def dog_detail(request, owner_id):
 
 def add(request):
     if request.method == 'POST':
-        owner_name = request.POST['owner_name']
-        dog_name = request.POST['dog_name']
+        form = AddDogForm(request.POST)
 
-        # Check to see if an owner with this name already exists
-        if Owner.objects.filter(name=owner_name).exists():
-            print 'owner exists!'
-            return render(request, 'dogs/add.html', {
-                'error_message': 'An owner with this name already exists.'
-            })
-        else:
-            o = Owner(name=owner_name)
-            o.save()
+        if form.is_valid():
+            owner_name = request.POST['owner_name']
+            dog_name = request.POST['dog_name']
 
-            o.dog_set.create(name=dog_name)
-            o.save()
+            # Check to see if an owner with this name already exists
+            if Owner.objects.filter(name=owner_name).exists():
+                return render(request, 'dogs/add.html', {
+                    'error_message': 'An owner with this name already exists.',
+                    'form': form
+                })
+            else:
+                o = Owner(name=owner_name)
+                o.save()
 
-            # return render(request, 'dogs/index.html')
-            return redirect('dogs:index')
+                o.dog_set.create(name=dog_name)
+                o.save()
+
+                return HttpResponseRedirect('/dogs/')
 
     else:
-        return render(request, 'dogs/add.html')
+        form = AddDogForm()
 
-# TODO:  use ModelForm
-
-# def add(request):
-#     if request.method == 'POST':
-#         owner_name = request.POST['owner_name']
-
-#         # Check to see if an owner with this name already exists
-#         if Owner.objects.get(name=owner_name).exists():
-#             print 'owner exists!'
-#             return render(request, 'dogs/add.html', {
-#                 'error_message': 'An owner with this name already exists.'
-#             })
-#         else:
-#             o = Owner(name=owner_name)
-#             o.save()
-#             return render(request, 'dogs/index.html')
-
-#     else:
-#         form = OwnerForm()
-
-#     return render(request, 'dogs/add.html', {
-#         'form': form,
-#     })
+    return render(request, 'dogs/add.html', {'form': form})
