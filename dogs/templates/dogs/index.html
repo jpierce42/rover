@@ -5,7 +5,7 @@
     <li><a href="{% url 'dogs:dog_detail' owner.id %}" target="#">{{ owner.name }}</a> :
     {% for dog in owner.dog_set.all %}
         {{ dog.name }}
-        <img src="{{ dog.image.url }}" />
+        <img src="{{ dog.image.url_150x150 }}" />
     {% endfor %}
 {% endfor %}
 </ul>

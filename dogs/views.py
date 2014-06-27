@@ -30,8 +30,8 @@ def add(request):
         form = AddDogForm(request.POST, request.FILES)
 
         if form.is_valid():
-            owner_name = request.POST['owner_name']
-            dog_name = request.POST['dog_name']
+            owner_name = form.cleaned_data['owner_name']
+            dog_name = form.cleaned_data['dog_name']
 
             # Check to see if an owner with this name already exists
             if Owner.objects.filter(name=owner_name).exists():
