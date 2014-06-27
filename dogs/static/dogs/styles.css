@@ -1,0 +1,70 @@
+html, body { height: 100%; margin: 0; padding: 0; }
+
+
+/* Typography
+----------------------------------------------- */
+body {
+    color: #666;
+    font-family: Raleway, "Helvetica Neue", Helvetica, Lucida, sans-serif;
+}
+
+
+/* Links
+----------------------------------------------- */
+a { text-decoration: none; color: rgb(20, 164, 190); }
+a:hover { text-decoration: underline; }
+
+
+/* Header
+----------------------------------------------- */
+#header_container { 
+    border:1px solid #ccc; 
+    height:40px; 
+    left:0; 
+    position:fixed; 
+    width:100%; 
+    top:0;
+    padding: 10px 0;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.14902) 0px 3px 8px -2px;
+    background-color: rgb(243, 243, 243);
+    background-image: linear-gradient(rgb(252, 252, 252), rgb(228, 228, 228) 70%, rgb(245, 245, 245));
+}
+#header { line-height:40px; margin:0 auto; width:940px; }
+#header h1 { display: inline; font-weight: normal; font-size: 1.25em; }
+#header a#add_link { float: right; }
+#header a#add_link:before { 
+    content: "";
+    display: block;
+    background: url("images/add.png") no-repeat;
+    width: 16px;
+    height: 16px;
+    float: left;
+    margin: 12px 0 0 0;
+}
+
+
+/* Main app styles
+----------------------------------------------- */
+#container { 
+    margin: 0 auto;
+    height: 100%;
+    padding: 80px 10px;
+}
+
+.dog_container {
+    display: inline;
+    width: 200px;
+    height: 200px;
+}
+
+.img_container {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #ccc;
+    background-color: #eee;
+}
+
+.img_container img {
+    display: block;
+    margin: auto;
+}

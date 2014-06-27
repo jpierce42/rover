@@ -1,0 +1,25 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jen Pierce's Rover Coding Project</title>
+<link rel="shortcut icon" href="{% static 'dogs/images/favicon.ico' %}" />
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="{% static 'dogs/styles.css' %}"
+</head>
+<body>
+    <div id="container">
+        <div id="header_container">
+            <div id="header">
+            <h1>Jen Pierce's Rover Coding Project</h1>
+            <a id="add_link" href="{% url 'dogs:add' %}">Add Dog</a>
+            </div>
+        </div>
+        <div id="content">
+        {% block content %}
+        {% endblock %}
+        </div>
+    </div>
+</body>
+</html>
