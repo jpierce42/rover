@@ -11,6 +11,7 @@ class Owner(models.Model):
 class Dog(models.Model):
     owner = models.ForeignKey(Owner)
     name = models.CharField(max_length=50)
+    image = models.ImageField(upload_to = 'dogs/images')
 
     def __unicode__(self):
         return self.name

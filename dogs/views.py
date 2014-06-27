@@ -2,21 +2,15 @@ from django.shortcuts import (
     render, get_object_or_404)
 from django.http import HttpResponseRedirect
 from django import forms
-# from django.forms import ModelForm
 
-from dogs.models import Owner, Dog
+from dogs.models import Owner
 
 
 class AddDogForm(forms.Form):
     owner_name = forms.CharField(label='Owner name:', max_length=50)
     dog_name = forms.CharField(label='Dog name:', max_length=50)
+    image = forms.ImageField()
 
-
-# TODO: Use model forms.
-# class OwnerForm(ModelForm):
-#     class Meta:
-#         model = Owner
-#         fields = ['name']
 
 def index(request):
     owner_list = Owner.objects.all()
@@ -33,7 +27,7 @@ def dog_detail(request, owner_id):
 
 def add(request):
     if request.method == 'POST':
-        form = AddDogForm(request.POST)
+        form = AddDogForm(request.POST, request.FILES)
 
         if form.is_valid():
             owner_name = request.POST['owner_name']
@@ -49,8 +43,11 @@ def add(request):
                 o = Owner(name=owner_name)
                 o.save()
 
-                o.dog_set.create(name=dog_name)
+                d = o.dog_set.create(name=dog_name)
                 o.save()
+
+                d.image = form.cleaned_data['image']
+                d.save()
 
                 return HttpResponseRedirect('/dogs/')
 

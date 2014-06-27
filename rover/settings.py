@@ -83,3 +83,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+
+# TODO:  There must be a way not to hard-code this!
+MEDIA_ROOT = '/Users/jenpi/Code/rover/media/'
+
+MEDIA_URL = '/media/'
