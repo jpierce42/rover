@@ -9,6 +9,8 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
+
+
 <div id="dogs">
 {% for owner in owner_list %}
     <div class="dog_container">
@@ -20,7 +22,6 @@
         {{ dog.name }}
     {% endfor %}
     </div>
-   
 {% endfor %}
 </ul>
 </div>

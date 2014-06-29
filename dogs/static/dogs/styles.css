@@ -70,6 +70,7 @@ a:hover { text-decoration: underline; }
     background-color: #eee;
     margin: 5px 0;
     text-align: center;
+    white-space: nowrap;
 }
 
 .img_container:before {
@@ -80,8 +81,8 @@ a:hover { text-decoration: underline; }
 }
 
 .img_container img {
-    display: inline-block;
     vertical-align: middle;
+    margin-left: -4px;
 }
 
 /* Search form */
@@ -103,6 +104,7 @@ form.search input[type=submit] {
     border: 0 none;
     cursor: pointer;
     -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
     border-radius: 5px;
     font-family: Raleway, "Helvetica Neue", Helvetica, Lucida, sans-serif;
     font-weight: bold;
@@ -132,6 +134,8 @@ form.search ul.errorlist li {
     text-align: center;
     background-color: white;
     -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
     padding: 10px;
 }
 .modal img {

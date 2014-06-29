@@ -29,21 +29,7 @@ Complete this project and push your solution back to this repository. When you'r
 ---
 ### Comments from Jen:
 
-App still in progress.  Currently you'll see the following features implemented:
-
-- Basic app structure; models, views
-- Form to add an owner & dog
-- Image upload & thumbnail handling
-- Some styling
-
-Still in progress:
-
-- Display dog detail page in lightbox rather than new page
-- Search functionality
-- Styling
-
-
-Additionally, here are some Django-related questions I've come across as I learn about the framework.  I assume these are pretty basic question with straightforward answers; as mentioned, I'm brand new to Django!  Would be interested to hear the team's input on these.
+App is now complete.  Additionally, here are some Django-related questions I've come across as I learn about the framework.  I assume these are pretty basic question with straightforward answers; as mentioned, I'm brand new to Django!  Would be interested to hear the team's input on these.
 
 - How do you decide when to use ModelForms?  Can you use a single form to edit two (or more) related models (e.g. dog and owner)?
 
