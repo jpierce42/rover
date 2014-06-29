@@ -12,10 +12,36 @@ class AddDogForm(forms.Form):
     image = forms.ImageField()
 
 
-def index(request):
-    owner_list = Owner.objects.all()
+class SearchForm(forms.Form):
+    query = forms.CharField(label='Search:', max_length=50)
 
-    context = {'owner_list': owner_list}
+
+def index(request):
+    ''' Main page displaying all owners & dogs.  If search has been submitted,
+        displays search results.
+    '''
+    owner_list = []
+    error_message = ''
+
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            if Owner.objects.filter(name__contains=query).exists():
+                owner_list = Owner.objects.filter(name__contains=query)
+            else:
+                error_message = 'No results found.'
+        else:
+            error_message = 'Invalid query; please try again.'
+    else:
+        owner_list = Owner.objects.all()
+        form = SearchForm()
+
+    context = {'owner_list': owner_list, 'form': form}
+    if error_message:
+        context['error_message'] = error_message
+
     return render(request, 'dogs/index.html', context)
 
 
@@ -26,6 +52,9 @@ def dog_detail(request, owner_id):
 
 
 def add(request):
+    ''' Add an owner & dog.  Form takes owner name, dog name, and image file;
+        thumbnail image is automatically generated from submitted image.
+    '''
     if request.method == 'POST':
         form = AddDogForm(request.POST, request.FILES)
 

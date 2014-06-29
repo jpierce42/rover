@@ -47,7 +47,6 @@ a:hover { text-decoration: underline; }
 ----------------------------------------------- */
 #container { 
     margin: 0 auto;
-    height: 100%;
     width:940px; 
     padding: 80px 0;
 }
@@ -83,5 +82,44 @@ a:hover { text-decoration: underline; }
 .img_container img {
     display: inline-block;
     vertical-align: middle;
-    /*margin: auto;*/
+}
+
+/* Search form */
+form.search {
+    margin-left: auto;
+    margin-right: 0;
+    width: 224px;
+}
+
+form.search label {
+    color: #aaa;
+    font-size: .9em;
+    margin-right: 5px;
+}
+
+form.search input[type=submit] {
+    padding: 4px 10px;
+    background: rgb(20, 164, 190); 
+    border: 0 none;
+    cursor: pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-family: Raleway, "Helvetica Neue", Helvetica, Lucida, sans-serif;
+    font-weight: bold;
+    color: white;
+
+}
+
+form.search input[type=submit]:hover {
+    background: rgb(153, 255, 255);
+    color: #aaa;
+}
+
+form.search ul.errorlist {
+    list-style-type: none;
+    padding: 0;
+}
+
+form.search ul.errorlist li {
+    color: red;
 }
