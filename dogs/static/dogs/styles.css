@@ -123,3 +123,20 @@ form.search ul.errorlist {
 form.search ul.errorlist li {
     color: red;
 }
+
+
+/* Modal custom styling
+----------------------------------------------- */
+.modal {
+    width: 500px;
+    text-align: center;
+    background-color: white;
+    -webkit-border-radius: 5px;
+    padding: 10px;
+}
+.modal img {
+    width: 500px;
+    height: auto;
+    margin: 5px 0;
+    border: 1px solid #aaa;
+}

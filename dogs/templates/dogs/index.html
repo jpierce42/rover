@@ -12,7 +12,7 @@
 <div id="dogs">
 {% for owner in owner_list %}
     <div class="dog_container">
-    <a href="{% url 'dogs:dog_detail' owner.id %}" target="#" class="detail_link">{{ owner.name }}</a>
+    <a href="{% url 'dogs:dog_detail' owner.id %}" rel="modal:open">{{ owner.name }}</a>
     {% for dog in owner.dog_set.all %}
         <div class="img_container">
             <img src="{{ dog.image.url_150x150 }}" />
@@ -20,6 +20,7 @@
         {{ dog.name }}
     {% endfor %}
     </div>
+   
 {% endfor %}
 </ul>
 </div>
