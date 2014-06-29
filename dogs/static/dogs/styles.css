@@ -56,10 +56,11 @@ a:hover { text-decoration: underline; }
     width: 150px;
     height: 200px;
     margin-right: 47px;
+    margin-bottom: 25px;
     text-align: center;
 }
 
-.dog_container:last-child {
+.dog_container:nth-child(5) {
     margin-right: 0;
 }
 
@@ -101,7 +102,16 @@ form.search label {
     margin-right: 5px;
 }
 
-form.search input[type=submit] {
+form.search ul.errorlist {
+    list-style-type: none;
+    padding: 0;
+}
+
+form.search ul.errorlist li {
+    color: red;
+}
+
+form input[type=submit] {
     padding: 4px 10px;
     background: rgb(20, 164, 190); 
     border: 0 none;
@@ -115,20 +125,10 @@ form.search input[type=submit] {
 
 }
 
-form.search input[type=submit]:hover {
+form input[type=submit]:hover {
     background: rgb(153, 255, 255);
     color: #aaa;
 }
-
-form.search ul.errorlist {
-    list-style-type: none;
-    padding: 0;
-}
-
-form.search ul.errorlist li {
-    color: red;
-}
-
 
 /* Modal custom styling
 ----------------------------------------------- */
@@ -141,9 +141,20 @@ form.search ul.errorlist li {
     border-radius: 5px;
     padding: 10px;
 }
+
 .modal img {
     width: 500px;
     height: auto;
     margin: 5px 0;
     border: 1px solid #aaa;
+}
+
+/* Add dog form
+----------------------------------------------- */
+form.add label {
+    margin-right: 10px;
+}
+
+form.add input {
+    margin-right: 20px;
 }

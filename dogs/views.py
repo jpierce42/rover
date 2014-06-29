@@ -51,7 +51,6 @@ def index(request):
     return render(request, 'dogs/index.html', context)
 
 
-# TODO:  Dog detail should appear in lightbox, not separate window.
 def dog_detail(request, owner_id):
     owner = get_object_or_404(Owner, pk=owner_id)
     return render(request, 'dogs/dog_detail.html', {'owner': owner})
