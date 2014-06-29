@@ -2,13 +2,11 @@
 
 {% block content %}
 <div id="dogs">
-<ul>
 {% for owner in owner_list %}
     <div class="dog_container">
     <a href="{% url 'dogs:dog_detail' owner.id %}" target="#" class="detail_link">{{ owner.name }}</a>
     {% for dog in owner.dog_set.all %}
         <div class="img_container">
-            <span class="img_helper"></span>
             <img src="{{ dog.image.url_150x150 }}" />
         </div>
         {{ dog.name }}
