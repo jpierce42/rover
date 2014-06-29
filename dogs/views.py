@@ -3,7 +3,7 @@ from django.shortcuts import (
 from django.http import HttpResponseRedirect
 from django import forms
 
-from dogs.models import Owner
+from dogs.models import Owner, Dog
 
 
 class AddDogForm(forms.Form):
@@ -28,9 +28,15 @@ def index(request):
 
         if form.is_valid():
             query = form.cleaned_data['query']
+
             if Owner.objects.filter(name__contains=query).exists():
                 owner_list = Owner.objects.filter(name__contains=query)
-            else:
+
+            if Dog.objects.filter(name__contains=query).exists():
+                for dog in Dog.objects.filter(name__contains=query):
+                    owner_list.append(dog.owner)
+
+            if not owner_list:
                 error_message = 'No results found.'
         else:
             error_message = 'Invalid query; please try again.'
