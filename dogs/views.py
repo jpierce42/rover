@@ -1,19 +1,9 @@
 from django.shortcuts import (
     render, get_object_or_404)
 from django.http import HttpResponseRedirect
-from django import forms
 
 from dogs.models import Owner, Dog
-
-
-class AddDogForm(forms.Form):
-    owner_name = forms.CharField(label='Owner name:', max_length=50)
-    dog_name = forms.CharField(label='Dog name:', max_length=50)
-    image = forms.ImageField()
-
-
-class SearchForm(forms.Form):
-    query = forms.CharField(label='Search:', max_length=50)
+from dogs.forms import AddDogForm, SearchForm
 
 
 def index(request):
@@ -23,18 +13,20 @@ def index(request):
     owner_list = []
     error_message = ''
 
-    if request.method == 'POST':
-        form = SearchForm(request.POST)
+    if request.GET.items():
+        form = SearchForm(request.GET)
 
         if form.is_valid():
             query = form.cleaned_data['query']
 
             if Owner.objects.filter(name__contains=query).exists():
-                owner_list = Owner.objects.filter(name__contains=query)
+                owner_list.extend(
+                    list(Owner.objects.filter(name__contains=query)))
 
             if Dog.objects.filter(name__contains=query).exists():
-                for dog in Dog.objects.filter(name__contains=query):
-                    owner_list.append(dog.owner)
+                for dog in list(Dog.objects.filter(name__contains=query)):
+                    if dog.owner not in owner_list:
+                        owner_list.append(dog.owner)
 
             if not owner_list:
                 error_message = 'No results found.'
@@ -77,13 +69,10 @@ def add(request):
                 o = Owner(name=owner_name)
                 o.save()
 
-                d = o.dog_set.create(name=dog_name)
-                o.save()
+                o.dog_set.create(
+                    name=dog_name, image=form.cleaned_data['image'])
 
-                d.image = form.cleaned_data['image']
-                d.save()
-
-                return HttpResponseRedirect('/dogs/')
+                return HttpResponseRedirect('/')
 
     else:
         form = AddDogForm()

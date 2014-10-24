@@ -4,7 +4,9 @@
 
 <h1>Add a dog</h1>
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% if error_message %}
+<p><strong>{{ error_message }}</strong></p>
+{% endif %}
 
 <form action="{% url 'dogs:add' %}" method="post" enctype="multipart/form-data" class="add">
     {% csrf_token %}

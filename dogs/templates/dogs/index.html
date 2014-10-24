@@ -2,18 +2,19 @@
 
 {% block content %}
 <div id="search_form">
-<form class="search" action="{% url 'dogs:index' %}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Go" />
-</form>
+    <form class="search" action="{% url 'dogs:index' %}" method="get">
+        {{ form }}
+        <input type="submit" value="Go" />
+    </form>
 </div>
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% if error_message %}
+<p><strong>{{ error_message }}</strong></p>
+{% endif %}
 
 <div id="dogs">
 {% for owner in owner_list %}
-    <div class="dog_container">
+<div class="dog_container">
     <a href="{% url 'dogs:dog_detail' owner.id %}" rel="modal:open">{{ owner.name }}</a>
     {% for dog in owner.dog_set.all %}
         <div class="img_container">
@@ -21,8 +22,7 @@
         </div>
         {{ dog.name }}
     {% endfor %}
-    </div>
+</div>
 {% endfor %}
-</ul>
 </div>
 {% endblock %}
