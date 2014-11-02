@@ -23,4 +23,4 @@ The goal of this project to create a web interface for a database of dogs and th
 7. Allow the user to search for a dog by dog name or dog owner name.
 
 
-![Rover app](screenshot.png?raw=true "Rover App")
+![Rover app](screenshot1.png?raw=true "Rover App")
